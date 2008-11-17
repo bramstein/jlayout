@@ -1,8 +1,8 @@
 
 /*!
- * jLayout JQuery Plugin v0.1
+ * jLayout JQuery Plugin v0.12
  *
- * Licensed under the revised BSD License.
+ * Licensed under the new BSD License.
  * Copyright 2008, Bram Stein
  * All rights reserved.
  */
@@ -29,6 +29,13 @@ if (jQuery && jLayout) {
 						o.items[i] = $(this);
 					});
 					element.data('jlayout', jLayout.grid(o));
+				}
+				else if (o.type === 'flex-grid') {
+					o.items = [];
+					element.children().each(function (i) {
+						o.items[i] = $(this);
+					});
+					element.data('jlayout', jLayout.flexGrid(o));
 				}
 				if (o.resize) {
 					element.bounds(element.preferredSize());
