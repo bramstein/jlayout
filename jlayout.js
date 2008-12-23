@@ -42,6 +42,13 @@ jLayout = {
 		that.maximum = function (container) {
 			return {width: Number.MAX_VALUE, height: Number.MAX_VALUE};
 		};
+
+		/**
+		 * Returns all the items in this container in an array.
+		 */
+		that.items = function () {
+			return [];
+		};
 		return that;
 	},
 
@@ -64,6 +71,11 @@ jLayout = {
 		else {
 			my.rows = Math.floor((my.items.length + my.columns - 1) / my.columns);
 		}
+
+		that.items = function () {
+			return Array.prototype.push.apply([], my.items);
+			//return [].append(my.items);
+		};
 
 		that.layout = function (container) {
 			var i, j,
@@ -234,7 +246,31 @@ jLayout = {
 			north = spec.north,
 			south = spec.south,
 			center = spec.center;
-		
+
+		that.items = function () {
+			var items = [];
+			if (east) {
+				items.push(east);
+			}
+
+			if (west) {
+				items.push(west);
+			}
+
+			if (north) {
+				items.push(north);
+			}
+
+			if (south) {
+				items.push(south);
+			}
+
+			if (center) {
+				items.push(center);
+			}
+			return items;
+		};		
+
 		that.layout = function (container) {
 			var size = container.bounds(),
 				insets = container.insets(),
