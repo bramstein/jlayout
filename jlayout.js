@@ -73,8 +73,9 @@ jLayout = {
 		}
 
 		that.items = function () {
-			return Array.prototype.push.apply([], my.items);
-			//return [].append(my.items);
+			var r = [];
+			Array.prototype.push.apply(r, my.items);
+			return r;
 		};
 
 		that.layout = function (container) {
@@ -126,8 +127,10 @@ jLayout = {
 					width = Math.max(width, type_size.width);
 					height = Math.max(height, type_size.height);
 				}
-				return {'width': insets.left + insets.right + my.columns * width + (my.columns - 1) * my.hgap, 
-						'height': insets.top + insets.bottom + my.rows * height + (my.rows - 1) * my.vgap};
+				return {
+					'width': insets.left + insets.right + my.columns * width + (my.columns - 1) * my.hgap, 
+					'height': insets.top + insets.bottom + my.rows * height + (my.rows - 1) * my.vgap
+				};
 			};
 		}
 
@@ -348,8 +351,10 @@ jLayout = {
 					height += type_size.height + my.vgap;
 				}
 
-				return {'width': width + insets.left + insets.right, 
-						'height': height + insets.top + insets.bottom};
+				return {
+					'width': width + insets.left + insets.right, 
+					'height': height + insets.top + insets.bottom
+				};
 			};
 		}
 		that.preferred = typeLayout('preferred');
