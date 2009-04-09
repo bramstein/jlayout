@@ -8,56 +8,15 @@
  */
 /*global jLayout */
 jLayout = {
-	layout : function (spec, shared) {
-		var that = {},
-			my = shared || {};
-
-		my.hgap = spec.hgap || 0;
-		my.vgap = spec.vgap || 0;
-
-		/**
-		 * Lay out the container using a layout algorithm.
-		 */
-		that.layout = function (container) {
-			return container;
-		};
-
-		/**
-		 * Return the preferred size of the container.
-		 */
-		that.preferred = function (container) {
-			return {width: my.hgap, height: my.vgap};
-		};
-
-		/**
-		 * Return the minimum size the container is allowed to have.
-		 */
-		that.minimum = function (container) {
-			return {width: my.hgap, height: my.vgap};
-		};
-
-		/**
-		 * Return the maximum size the container is allowed to have.
-		 */
-		that.maximum = function (container) {
-			return {width: Number.MAX_VALUE, height: Number.MAX_VALUE};
-		};
-
-		/**
-		 * Returns all the items in this container in an array.
-		 */
-		that.items = function () {
-			return [];
-		};
-		return that;
-	},
-
 	/**
 	 * Grid layout
 	 */
 	grid : function (spec, shared) {
 		var my = shared || {},
-			that = this.layout(spec, my);
+			that = {};
+
+		my.hgap = spec.hgap || 0;
+		my.vgap = spec.vgap || 0;
 
 		// initialize the number of columns to the number of items
 		// we're laying out.
@@ -243,12 +202,15 @@ jLayout = {
 	 */
 	border : function (spec) {
 		var my = {},
-			that = this.layout(spec, my),
+			that = {},
 			east = spec.east,
 			west = spec.west,
 			north = spec.north,
 			south = spec.south,
 			center = spec.center;
+
+		my.hgap = spec.hgap || 0;
+		my.vgap = spec.vgap || 0;
 
 		that.items = function () {
 			var items = [];
