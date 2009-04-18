@@ -1,9 +1,9 @@
 
 /*!
- * jLayout - JavaScript Layout Algorithms v0.3
+ * jLayout - JavaScript Layout Algorithms v0.4
  *
  * Licensed under the new BSD License.
- * Copyright 2008, Bram Stein
+ * Copyright 2008-2009, Bram Stein
  * All rights reserved.
  */
 /*global jLayout */

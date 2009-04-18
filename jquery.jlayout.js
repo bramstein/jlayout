@@ -1,9 +1,9 @@
 
 /*!
- * jLayout JQuery Plugin v0.12
+ * jLayout JQuery Plugin v0.13
  *
  * Licensed under the new BSD License.
- * Copyright 2008, Bram Stein
+ * Copyright 2008-2009 Bram Stein
  * All rights reserved.
  */
 /*global jQuery jLayout*/
@@ -42,6 +42,9 @@ if (jQuery && jLayout) {
 				}
 				element.doLayout();
 				element.css({position: 'relative'});
+				if ($.ui !== undefined) {
+					element.addClass('ui-widget');
+				}
 			});
 		};
 
