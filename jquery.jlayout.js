@@ -1,6 +1,6 @@
 
 /*!
- * jLayout JQuery Plugin v0.13
+ * jLayout JQuery Plugin v0.14
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009 Bram Stein
@@ -15,7 +15,7 @@ if (jQuery && jLayout) {
 				var element = $(this),
 					o = $.metadata && element.metadata().layout ? $.extend(opts, element.metadata().layout) : opts;
 
-				if (o.type === 'border') {
+				if (o.type === 'border' && typeof jLayout.border !== 'undefined') {
 					$.each(['north', 'south', 'west', 'east', 'center'], function (i, name) {
 						if (element.children().hasClass(name)) {
 							o[name] = element.find('.' + name + ':first');
@@ -23,14 +23,14 @@ if (jQuery && jLayout) {
 					});
 					element.data('jlayout', jLayout.border(o));
 				}
-				else if (o.type === 'grid') {
+				else if (o.type === 'grid' && typeof jLayout.grid !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
 						o.items[i] = $(this);
 					});
 					element.data('jlayout', jLayout.grid(o));
 				}
-				else if (o.type === 'flex-grid') {
+				else if (o.type === 'flex-grid' && typeof jLayout.flexGrid !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
 						o.items[i] = $(this);
