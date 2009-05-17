@@ -73,17 +73,17 @@ if (jQuery && jLayout) {
 			var tmp = {};
 
 			if (value) {
-				if (value.x) {
+				if (typeof value.x === 'number') {
 					tmp.left = value.x;
 				}
-				if (value.y) {
+				if (typeof value.y === 'number') {
 					tmp.top = value.y;
 				}
-				if (value.width) {
+				if (typeof value.width === 'number') {
 					tmp.width = (value.width - (this.outerWidth(true) - this.width()));
 					tmp.width = (tmp.width >= 0) ? tmp.width : 0;
 				}
-				if (value.height) {
+				if (typeof value.height === 'number') {
 					tmp.height = value.height - (this.outerHeight(true) - this.height());
 					tmp.height = (tmp.height >= 0) ? tmp.height : 0;
 				}
