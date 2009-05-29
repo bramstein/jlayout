@@ -9,16 +9,113 @@
 /*global jQuery jLayout*/
 if (jQuery && jLayout) {
 	(function ($) {
+		function wrap (item) {
+			var that = {};
+
+			$.each(['min', 'max'], function (i, name) {
+				that[name + 'imumSize'] = function (value) {
+					if (item.data('jlayout')) {
+						return item.data('jlayout')[name + 'imum'](that);
+					}
+					else {
+						return item[name + 'Size'](value);
+					}
+				};
+			});
+
+			$.extend(that, {
+				doLayout: function () {
+					if (item.data('jlayout')) {
+						item.data('jlayout').layout(that);
+					}
+					item.css({position: 'absolute'});
+				},
+				isVisible: function () {
+					return item.isVisible();
+				},
+				insets: function () {
+					var p = item.padding(),
+						b = item.border();
+
+					return {'top': p.top, 
+						'bottom': p.bottom + b.bottom + b.top, 
+						'left': p.left, 
+						'right': p.right + b.right + b.left};
+				},
+				bounds: function (value) {
+					var tmp = {};
+
+					if (value) {
+						if (typeof value.x === 'number') {
+							tmp.left = value.x;
+						}
+						if (typeof value.y === 'number') {
+							tmp.top = value.y;
+						}
+						if (typeof value.width === 'number') {
+							tmp.width = (value.width - (item.outerWidth(true) - item.width()));
+							tmp.width = (tmp.width >= 0) ? tmp.width : 0;
+						}
+						if (typeof value.height === 'number') {
+							tmp.height = value.height - (item.outerHeight(true) - item.height());
+							tmp.height = (tmp.height >= 0) ? tmp.height : 0;
+						}
+						item.css(tmp);
+						return item;
+					}
+					else {
+						tmp = item.position();
+						return {'x': tmp.left,
+								'y': tmp.top,
+								'width': item.outerWidth(false),
+								'height': item.outerHeight(false)};
+					}
+				},
+				preferredSize: function () {
+					var minSize,
+						maxSize,
+						margin = item.margin(),
+						size = {width: 0, height: 0};
+
+					if (item.data('jlayout')) {
+						size = item.data('jlayout').preferred(that);
+
+						minSize = that.minimumSize();
+						maxSize = that.maximumSize();
+
+						size.width += margin.left + margin.right;
+						size.height += margin.top + margin.bottom;
+
+						if (size.width < minSize.width || size.height < minSize.height) {
+							size.width = Math.max(size.width, minSize.width);
+							size.height = Math.max(size.height, minSize.height);
+						}
+						else if (size.width > maxSize.width || size.height > maxSize.height) {
+							size.width = Math.min(size.width, maxSize.width);
+							size.height = Math.min(size.height, maxSize.height);
+						}
+					}
+					else {
+						size.width = that.bounds().width + margin.left + margin.right;
+						size.height = that.bounds().height + margin.top + margin.bottom;
+					}
+					return size;
+				}
+			});
+			return that;
+		}
+
 		$.fn.layout = function (options) {
 			var opts = $.extend({}, $.fn.layout.defaults, options);
 			return $.each(this, function () {
 				var element = $(this),
+					elementWrapper = wrap(element),
 					o = $.metadata && element.metadata().layout ? $.extend(opts, element.metadata().layout) : opts;
 
 				if (o.type === 'border' && typeof jLayout.border !== 'undefined') {
 					$.each(['north', 'south', 'west', 'east', 'center'], function (i, name) {
 						if (element.children().hasClass(name)) {
-							o[name] = element.find('.' + name + ':first');
+							o[name] = wrap(element.find('.' + name + ':first'));
 						}
 					});
 					element.data('jlayout', jLayout.border(o));
@@ -26,21 +123,21 @@ if (jQuery && jLayout) {
 				else if (o.type === 'grid' && typeof jLayout.grid !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
-						o.items[i] = $(this);
+						o.items[i] = wrap($(this));
 					});
 					element.data('jlayout', jLayout.grid(o));
 				}
-				else if (o.type === 'flex-grid' && typeof jLayout.flexGrid !== 'undefined') {
+				else if (o.type === 'flexGrid' && typeof jLayout.flexGrid !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
-						o.items[i] = $(this);
+						o.items[i] = wrap($(this));
 					});
 					element.data('jlayout', jLayout.flexGrid(o));
 				}
 				if (o.resize) {
-					element.bounds(element.preferredSize());
+					elementWrapper.bounds(elementWrapper.preferredSize());
 				}
-				element.doLayout();
+				elementWrapper.doLayout();
 				element.css({position: 'relative'});
 				if ($.ui !== undefined) {
 					element.addClass('ui-widget');
@@ -51,94 +148,6 @@ if (jQuery && jLayout) {
 		$.fn.layout.defaults = {
 			resize: true,
 			type: 'grid'
-		};
-
-		$.fn.doLayout = function () {
-			if (this.data('jlayout')) {
-				this.data('jlayout').layout(this);
-			}
-			this.css({position: 'absolute'});
-		};
-
-		$.fn.insets = function () {
-			var p = this.padding(),
-				b = this.border();
-			return {'top': p.top, 
-					'bottom': p.bottom + b.bottom + b.top, 
-					'left': p.left, 
-					'right': p.right + b.right + b.left};
-		};
-
-		$.fn.bounds = function (value) {
-			var tmp = {};
-
-			if (value) {
-				if (typeof value.x === 'number') {
-					tmp.left = value.x;
-				}
-				if (typeof value.y === 'number') {
-					tmp.top = value.y;
-				}
-				if (typeof value.width === 'number') {
-					tmp.width = (value.width - (this.outerWidth(true) - this.width()));
-					tmp.width = (tmp.width >= 0) ? tmp.width : 0;
-				}
-				if (typeof value.height === 'number') {
-					tmp.height = value.height - (this.outerHeight(true) - this.height());
-					tmp.height = (tmp.height >= 0) ? tmp.height : 0;
-				}
-				this.css(tmp);
-				return this;
-			}
-			else {
-				tmp = this.position();
-				return {'x': tmp.left,
-						'y': tmp.top,
-						'width': this.outerWidth(false),
-						'height': this.outerHeight(false)};
-			}
-		};
-
-		$.each(['min', 'max'], function (i, name) {
-			$.fn[name + 'imumSize'] = function (value) {
-				if (this.data('jlayout')) {
-					return this.data('jlayout')[name + 'imum'](this);
-				}
-				else {
-					return this[name + 'Size'](value);
-				}
-			};
-		});
-
-		$.fn.preferredSize = function () {
-			var minSize,
-				maxSize,
-				margin = this.margin(),
-				size = {width: 0, height: 0};
-
-			if (this.data('jlayout')) {
-				size = this.data('jlayout').preferred(this);
-
-				minSize = this.minimumSize();
-				maxSize = this.maximumSize();
-
-				size.width += margin.left + margin.right;
-				size.height += margin.top + margin.bottom;
-
-				if (size.width < minSize.width || size.height < minSize.height) {
-					size.width = Math.max(size.width, minSize.width);
-					size.height = Math.max(size.height, minSize.height);
-				}
-				else if (size.width > maxSize.width || size.height > maxSize.height) {
-					size.width = Math.min(size.width, maxSize.width);
-					size.height = Math.min(size.height, maxSize.height);
-				}
-			}
-			else {
-				size.width = this.bounds().width + margin.left + margin.right;
-				size.height = this.bounds().height + margin.top + margin.bottom;
-			}
-			return size;
 		};
 	})(jQuery);
 }
