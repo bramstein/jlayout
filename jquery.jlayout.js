@@ -1,6 +1,6 @@
 
 /*!
- * jLayout JQuery Plugin v0.14
+ * jLayout JQuery Plugin v0.15
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009 Bram Stein
@@ -9,7 +9,11 @@
 /*global jQuery jLayout*/
 if (jQuery && jLayout) {
 	(function ($) {
-		function wrap (item) {
+		/**
+		 * This wraps jQuery objects in another object that supplies
+		 * the methods required for the layout algorithms.
+		 */
+		function wrap(item) {
 			var that = {};
 
 			$.each(['min', 'max'], function (i, name) {
