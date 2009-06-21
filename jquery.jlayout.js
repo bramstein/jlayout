@@ -137,6 +137,12 @@ if (jQuery && jLayout) {
 						o.items[i] = wrap($(this));
 					});
 					element.data('jlayout', jLayout.flexGrid(o));
+				} else if (o.type === 'column' && typeof jLayout.column !== 'undefined') {
+					o.items = [];
+					element.children().each(function (i) {
+						o.items[i] = wrap($(this));
+					});
+					element.data('jlayout', jLayout.column(o));
 				}
 				if (o.resize) {
 					elementWrapper.bounds(elementWrapper.preferredSize());
