@@ -16,7 +16,7 @@
 		my.hgap = options.hgap || 0;
 		my.vgap = options.vgap || 0;
 		my.columns = options.columns || 2;
-		my.items = options.items || [],
+		my.items = options.items || [];
 		my.maxHeight = options.maxHeight || -1;
 
 		that.items = function () {
