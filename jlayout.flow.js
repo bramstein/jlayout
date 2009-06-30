@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 /*global jLayout */
+/*
 (function () {
 	jLayout = typeof jLayout === 'undefined' ? {} : jLayout;
 
@@ -96,4 +97,4 @@
 
 		return that;
 	};
-})();
+})();*/
