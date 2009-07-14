@@ -1,0 +1,151 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Resizing Border Layout example</title>
+		<meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
+		<link type="text/css" href="../../lib/jquery-ui-1.7.1.custom.css" rel="stylesheet" />
+		<style>
+			html, body {	
+				width: 100%;
+				height: 100%;
+				padding: 0;
+				margin: 0;
+				overflow: hidden;
+			}
+
+			.layout {
+				height: 100%;
+                background-color: rgb(220, 220, 220);
+			}
+
+			.center, .east, .west, .north, .south {
+                background-color: white;
+			/*	border: 1px solid rgb(200, 200, 200);*/
+				text-align: center;
+                display: inline-block;
+                padding: 1em;
+
+			}
+
+            p {
+                text-align: left;
+            }
+
+			.west, .east {
+				width: 8%;
+			}
+
+			.north, .south {
+				height: 10%;
+			}
+            
+            /**
+             * These styles are to create custom resize handles.
+             */
+             .ui-resizable-helper {
+                display: none;
+             }
+             
+             .ui-resizable-handle {
+                background-color: rgb(220, 220, 220);
+             }
+             
+            .ui-resizable-w {
+                left: -7px;
+                width: 6px;
+            }
+            
+            .ui-resizable-e {
+                right: -7px;
+                width: 6px;
+            }
+            
+            .ui-resizable-n {
+                top: -7px;
+                height: 6px;
+            }
+            
+            .ui-resizable-s {
+                bottom: -7px;
+                height: 6px;
+            }
+        
+		</style>        
+		<script type="text/javascript" src="../../lib/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="../../lib/jquery-ui-1.7.1.custom.min.js"></script>
+		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
+		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
+		<script type="text/javascript" src="jlayout.border.js"></script>
+		<script type="text/javascript" src="jquery.jlayout.js"></script>
+		<script type="text/javascript">
+			jQuery(function($) {
+                var container = $('.layout');
+
+                function test() {
+                    console.log('dsdfsdsf');
+                    console.log(this);
+                    $(this).find('.ui-resizable-handle').css({backgroundColor: 'red'});
+                }
+
+				function layout() {
+					container.layout({resize: false, type: 'border', vgap: 7, hgap: 7});
+				}
+            
+                $('.north').resizable({
+					handles: 's',
+					stop: layout,
+                    ghost: true,
+                    start: test
+				});
+
+				$('.south').resizable({
+					handles: 'n',
+					stop: layout,
+                    ghost: true,
+                    start: test
+				});
+
+				$('.east').resizable({
+					handles: 'w',
+					stop: layout,
+                    ghost: true,
+                    start: test
+				});
+
+				$('.west').resizable({
+					handles: 'e',
+					stop: layout,
+                    ghost: true,
+                    start: test
+				});
+
+				$(window).resize(layout);
+
+                layout();
+			});
+		</script>
+
+	</head>
+	<body>
+		<div class="layout">
+			<div class="center">
+				<p>Center</p>
+				<h1><a href="http://www.bramstein.com/projects/jlayout/">jLayout project homepage</a></h1>
+                <p>This example uses the <code>resize</code> callback on the jQuery UI resizable "widget" to resize the layout while dragging the borders. Combined with some custom CSS rules, this makes for a very elegant resizable border layout. Please take care while using the <code>resize</code> event handler as recalculating the layout every pixel is expensive and older browsers might not have smooth resizing as a result.</p>
+			</div>
+			<div class="east">
+				<p>East</p>
+			</div>
+			<div class="west">
+				<p>West</p>
+			</div>
+			<div class="north">
+				<p>North</p>
+			</div>
+			<div class="south">
+				<p>South</p>
+			</div>
+		</div>
+	</body>
+</html>
