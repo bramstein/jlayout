@@ -1,6 +1,6 @@
 
 /*!
- * jLayout JQuery Plugin v0.15
+ * jLayout JQuery Plugin v0.16
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009 Bram Stein
@@ -74,9 +74,7 @@ if (jQuery && jLayout) {
 					} else {
 						tmp = item.position();
 						return {
-                        //    'x': item.offsetLeft,
-                        //    'y': item.offsetTop,
-                          'x': tmp.left,
+                          	'x': tmp.left,
                         	'y': tmp.top,
 							'width': item.outerWidth(false),
 							'height': item.outerHeight(false)
@@ -128,7 +126,7 @@ if (jQuery && jLayout) {
 				if (o.type === 'border' && typeof jLayout.border !== 'undefined') {                
 					$.each(['north', 'south', 'west', 'east', 'center'], function (i, name) {
 						if (element.children().hasClass(name)) {
-							o[name] = wrap(element.find('.' + name + ':first'));
+							o[name] = wrap(element.children('.' + name + ':first'));
 						}
 					});
 					element.data('jlayout', jLayout.border(o));
