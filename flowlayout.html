@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Flow Layout example</title>
+		<meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
+		<script type="text/javascript" src="../../lib/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
+		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
+		<script type="text/javascript" src="jlayout.flow.js"></script>
+		<script type="text/javascript" src="jlayout.grid.js"></script>
+		<script type="text/javascript" src="jquery.jlayout.js"></script>
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('#flow-left').layout();
+			});
+		</script>
+		<style>
+			#flow-left {
+				border: 1px solid red;
+				overflow: auto;
+				width: 350px;
+				height: 200px;
+			}
+
+			.c {
+				background-color: rgb(220,220,220);
+				border: 1px solid rgb(200,200,200);
+				text-align: center;
+				font-size: 3em;
+				display: inline-block;
+			}
+			.d {
+				font-size: 3.5em;
+			}
+
+			.e {
+				font-size: 2em;
+			}
+		</style>
+	</head>
+	<body>
+		<h1><a href="http://www.bramstein.com/projects/jlayout/">jLayout project homepage</a></h1>
+		<div id="flow-left" class="{layout: {type: 'flow', resize: false, alignment: 'left'}}">
+			<div class="c e">
+				One
+			</div>
+			<div class="c">
+				Two
+			</div>
+			<div class="c">
+				Three
+			</div>
+			<div class="c d">
+				Four
+			</div>
+			<div class="c e">
+				Five
+			</div>
+		</div>
+	</body>
+</html>

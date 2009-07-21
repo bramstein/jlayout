@@ -148,6 +148,12 @@ if (jQuery && jLayout) {
 						o.items[i] = wrap($(this));
 					});
 					element.data('jlayout', jLayout.column(o));
+				} else if (o.type === 'flow' && typeof jLayout.flow !== 'undefined') {
+					o.items = [];
+					element.children().each(function (i) {
+						o.items[i] = wrap($(this));
+					});
+					element.data('jlayout', jLayout.flow(o));					
 				}
                 
 				if (o.resize) {

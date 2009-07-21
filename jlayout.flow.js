@@ -6,7 +6,6 @@
  * All rights reserved.
  */
 /*global jLayout */
-/*
 (function () {
 	jLayout = typeof jLayout === 'undefined' ? {} : jLayout;
 
@@ -14,10 +13,11 @@
 		var my = {},
 			that = {};
 
-		my.hgap = spec.hgap || 0;
-		my.vgap = spec.vgap || 0;
-		my.alignment = (spec.alignment && (spec.alignment === 'center' || spec.alignment === 'right' || spec.alignment === 'left') && spec.alignment) || 'left';
-		
+		my.hgap = options.hgap || 5;
+		my.vgap = options.vgap || 5;
+		my.items = options.items || [];
+		my.alignment = (options.alignment && (options.alignment === 'center' || options.alignment === 'right' || options.alignment === 'left') && options.alignment) || 'left';		
+
 		that.items = function () {
 			var r = [];
 			Array.prototype.push.apply(r, my.items);
@@ -25,41 +25,73 @@
 		};
 
 		that.layout = function (container) {
-			var i = 0,
+			var parentSize = container.bounds(),
 				insets = container.insets(),
-				x = insets.left,
-				y = insets.top,
-				width = (container.bounds().width - (insets.left + insets.right),
-				height = (container.bounds().height - (insets.top + insets.bottom),
-				row = [],
+				i = 0,
+				len = my.items.length,
 				itemSize,
+				currentRow = [],
 				rowSize = {
 					width: 0,
 					height: 0
+				},
+				offset = {
+					x: insets.left + my.hgap,
+					y: insets.top + my.vgap
 				};
 
-			for (; i < my.items.length; i += 1) {
+			parentSize.width -= insets.left + insets.right + my.hgap * 2;
+			parentSize.height -= insets.top + insets.bottom + my.vgap * 2;
+
+			for (; i < len; i += 1) {
 				if (my.items[i].isVisible()) {
 					itemSize = my.items[i].preferredSize();
-
-					my.items[i].bounds(itemSize);
-					row.push(my.items[i]);
 					
+					if ((rowSize.width + itemSize.width + my.hgap) > parentSize.width) {
+						align(currentRow, offset, rowSize, parentSize);
+
+						currentRow = [];
+						offset.y += rowSize.height;
+						offset.x = insets.left + my.hgap;
+						rowSize.width = 0;
+						rowSize.height = 0;
+					}
 					rowSize.height = Math.max(rowSize.height, itemSize.height + my.vgap);
 					rowSize.width += itemSize.width + my.hgap;
 
-					if (rowSize.width > container.bounds().width + (insets.left + insets.right)) {
-						align(row, y, parentInsets, rowDimension, parentDimension);
-						row.clear();
-
-						y += rowDimension.height;
-						rowDimension.width = 0;
-						rowDimension.height = 0;
-					}
-	
+					currentRow.push(my.items[i]);
 				}
 			}
+			align(currentRow, offset, rowSize, parentSize);
+			return container;
 		};
+
+		function align(row, offset, rowSize, parentSize) {
+			var location = {
+					x: offset.x,
+					y: offset.y
+				},
+				i = 0,
+				len = row.length;
+
+			switch (my.alignment) {
+				case 'center': {
+					location.x += (my.hgap + parentSize.width - rowSize.width) / 2;
+					break;
+				}
+				case 'right': {
+					location.x += my.hgap + parentSize.width - rowSize.width;
+					break;
+				}
+			}
+
+			for (; i < len; i += 1) {
+				location.y = offset.y;
+				row[i].bounds(location);
+				row[i].doLayout();
+				location.x += row[i].bounds().width + my.hgap;
+			}
+		}
 
 		function typeLayout(type) {
 			return function (container) {
@@ -74,7 +106,7 @@
 					if (my.items[i].isVisible()) {
 						typeSize = my.items[i][type + 'Size']();
 						height = Math.max(height, typeSize.height);
-						width = Math.max(width, typeSize.width);
+						width += Math.max(width, typeSize.width);
 			
 						if (firstComponent) {
 							firstComponent = false;
@@ -97,4 +129,4 @@
 
 		return that;
 	};
-})();*/
+})();
