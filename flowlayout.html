@@ -4,20 +4,54 @@
 		<title>Flow Layout example</title>
 		<meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
 		<script type="text/javascript" src="../../lib/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="../../lib/jquery-ui-1.7.1.custom.min.js"></script>
 		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
 		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
 		<script type="text/javascript" src="jlayout.flow.js"></script>
-		<script type="text/javascript" src="jlayout.grid.js"></script>
 		<script type="text/javascript" src="jquery.jlayout.js"></script>
 		<script type="text/javascript">
 			jQuery(function($) {
-				$('#flow-left').layout();
+				var flow = $('#flow'),
+					align = 'left';
+
+				function layout() {
+					flow.layout({alignment: align});
+				}
+
+				// Note the "appendTo" and "helper" options. The "appendTo" options is necessary
+				// because otherwise the layout would also lay out the dragged item. The 
+				// "appendTo" option only works when "helper" has been set to 'clone', so we
+				// need to set that too.
+				flow.sortable({
+					appendTo: 'body',
+					helper: 'clone',
+					update: layout,
+					change: layout
+				});
+
+				$('#left').click(function () {
+					align = 'left';
+					layout();
+				});
+
+
+				$('#right').click(function () {
+					align = 'right';
+					layout();
+				});
+
+				$('#center').click(function () {
+					align = 'center';
+					layout();
+				});
+
+				layout();
 			});
 		</script>
 		<style>
-			#flow-left {
+			#flow {
 				border: 1px solid red;
-				overflow: auto;
+				overflow: none;
 				width: 350px;
 				height: 200px;
 			}
@@ -29,6 +63,8 @@
 				font-size: 3em;
 				display: inline-block;
 			}
+
+			
 			.d {
 				font-size: 3.5em;
 			}
@@ -40,7 +76,8 @@
 	</head>
 	<body>
 		<h1><a href="http://www.bramstein.com/projects/jlayout/">jLayout project homepage</a></h1>
-		<div id="flow-left" class="{layout: {type: 'flow', resize: false, alignment: 'left'}}">
+		<button id="left">Left</button><button id="center">Center</button><button id="right">Right</button>
+		<div id="flow" class="{layout: {type: 'flow', resize: false}}">
 			<div class="c e">
 				One
 			</div>
@@ -57,5 +94,6 @@
 				Five
 			</div>
 		</div>
+		
 	</body>
 </html>
