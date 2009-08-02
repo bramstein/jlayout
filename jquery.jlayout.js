@@ -1,6 +1,6 @@
 
 /*!
- * jLayout JQuery Plugin v0.16
+ * jLayout JQuery Plugin v0.17
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009 Bram Stein
@@ -13,7 +13,7 @@ if (jQuery && jLayout) {
 		 * This wraps jQuery objects in another object that supplies
 		 * the methods required for the layout algorithms.
 		 */
-		function wrap(item) {
+		function wrap(item, resize) {
 			var that = {};
 
 			$.each(['min', 'max'], function (i, name) {
@@ -88,7 +88,7 @@ if (jQuery && jLayout) {
 						size = {width: 0, height: 0},
                         l = item.data('jlayout');
 
-					if (l) {
+					if (l && resize) {
 						size = l.preferred(that);
 
 						minSize = that.minimumSize();
@@ -106,7 +106,6 @@ if (jQuery && jLayout) {
 						}
 					} else {
                         size = that.bounds();
-                    
 						size.width += margin.left + margin.right;
 						size.height += margin.top + margin.bottom;
 					}
@@ -120,8 +119,8 @@ if (jQuery && jLayout) {
 			var opts = $.extend({}, $.fn.layout.defaults, options);
 			return $.each(this, function () {
 				var element = $(this),
-					elementWrapper = wrap(element),
-					o = $.metadata && element.metadata().layout ? $.extend(opts, element.metadata().layout) : opts;
+					o = $.metadata && element.metadata().layout ? $.extend(opts, element.metadata().layout) : opts,
+					elementWrapper = wrap(element, o.resize);
 
 				if (o.type === 'border' && typeof jLayout.border !== 'undefined') {                
 					$.each(['north', 'south', 'west', 'east', 'center'], function (i, name) {
@@ -133,25 +132,33 @@ if (jQuery && jLayout) {
 				} else if (o.type === 'grid' && typeof jLayout.grid !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
-						o.items[i] = wrap($(this));
+						if (!$(this).hasClass('ui-resizable-handle')) {
+							o.items[i] = wrap($(this));
+						}
 					});
 					element.data('jlayout', jLayout.grid(o));
 				} else if (o.type === 'flexGrid' && typeof jLayout.flexGrid !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
-						o.items[i] = wrap($(this));
+						if (!$(this).hasClass('ui-resizable-handle')) {
+							o.items[i] = wrap($(this));
+						}
 					});
 					element.data('jlayout', jLayout.flexGrid(o));
 				} else if (o.type === 'column' && typeof jLayout.column !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
-						o.items[i] = wrap($(this));
+						if (!$(this).hasClass('ui-resizable-handle')) {
+							o.items[i] = wrap($(this));
+						}
 					});
 					element.data('jlayout', jLayout.column(o));
 				} else if (o.type === 'flow' && typeof jLayout.flow !== 'undefined') {
 					o.items = [];
 					element.children().each(function (i) {
-						o.items[i] = wrap($(this));
+						if (!$(this).hasClass('ui-resizable-handle')) {
+							o.items[i] = wrap($(this));
+						}
 					});
 					element.data('jlayout', jLayout.flow(o));					
 				}
