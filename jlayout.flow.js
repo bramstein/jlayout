@@ -1,5 +1,5 @@
 /*!
- * jLayout Flow Layout - JavaScript Layout Algorithms v0.11
+ * jLayout Flow Layout - JavaScript Layout Algorithms v0.12
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009, Bram Stein
@@ -37,23 +37,23 @@
 					height: 0
 				},
 				offset = {
-					x: insets.left + my.hgap,
-					y: insets.top + my.vgap
+					x: insets.left,
+					y: insets.top
 				};
 
-			parentSize.width -= insets.left + insets.right + my.hgap * 2;
-			parentSize.height -= insets.top + insets.bottom + my.vgap * 2;
+			parentSize.width -= insets.left + insets.right;
+			parentSize.height -= insets.top + insets.bottom;
 
 			for (; i < len; i += 1) {
 				if (my.items[i].isVisible()) {
 					itemSize = my.items[i].preferredSize();
 					
-					if ((rowSize.width + itemSize.width + my.hgap) > parentSize.width) {
+					if ((rowSize.width + itemSize.width) > parentSize.width) {
 						align(currentRow, offset, rowSize, parentSize);
 
 						currentRow = [];
 						offset.y += rowSize.height;
-						offset.x = insets.left + my.hgap;
+						offset.x = insets.left;
 						rowSize.width = 0;
 						rowSize.height = 0;
 					}
@@ -81,7 +81,7 @@
 					break;
 				}
 				case 'right': {
-					location.x += my.hgap + parentSize.width - rowSize.width;
+					location.x += parentSize.width - rowSize.width + my.hgap;
 					break;
 				}
 			}
@@ -107,19 +107,13 @@
 					if (my.items[i].isVisible()) {
 						typeSize = my.items[i][type + 'Size']();
 						height = Math.max(height, typeSize.height);
-						width += Math.max(width, typeSize.width);
-			
-						if (firstComponent) {
-							firstComponent = false;
-						} else {
-							width += my.hgap;
-						}
+						width += typeSize.width;
 					}
 				}
 
 				return {
-					'width': width + insets.left + insets.right + my.hgap * 2,
-					'height': height + insets.top + insets.bottom + my.vgap * 2
+					'width': width + insets.left + insets.right + (my.items.length - 1) * my.hgap,
+					'height': height + insets.top + insets.bottom
 				};
 			};
 		}
