@@ -1,5 +1,5 @@
 /*!
- * jLayout Flow Layout - JavaScript Layout Algorithms v0.1
+ * jLayout Flow Layout - JavaScript Layout Algorithms v0.11
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009, Bram Stein
@@ -13,8 +13,9 @@
 		var my = {},
 			that = {};
 
-		my.hgap = options.hgap || 5;
-		my.vgap = options.vgap || 5;
+		
+		my.hgap = typeof options.hgap === 'number' && !isNaN(options.hgap) ? options.hgap : 5;
+		my.vgap = typeof options.vgap === 'number' && !isNaN(options.vgap) ? options.vgap : 5;
 		my.items = options.items || [];
 		my.alignment = (options.alignment && (options.alignment === 'center' || options.alignment === 'right' || options.alignment === 'left') && options.alignment) || 'left';		
 
