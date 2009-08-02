@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="jlayout.border.js"></script>
 		<script type="text/javascript" src="jlayout.grid.js"></script>
 		<script type="text/javascript" src="jlayout.flexgrid.js"></script>
+		<script type="text/javascript" src="jlayout.flow.js"></script>
 		<script type="text/javascript" src="jquery.jlayout.js"></script>
 		<script type="text/javascript">
 			jQuery(function($)
@@ -38,6 +39,8 @@
 					vgap: 3, 
 					hgap: 3
 				});
+
+				$('#flow-left').layout();
 
 			});
 		</script>
@@ -84,6 +87,29 @@
 				padding-right: 2em;
 				text-align: justify;
 				display: inline-block;
+			}
+
+			#flow-left {
+				overflow: auto;
+				width: 350px;
+				height: 200px;
+			}
+
+			#flow-left div {
+				width: auto;
+				height: auto;
+			}
+
+			.large {
+				font-size: 3.5em;
+			}
+
+			.small {
+				font-size: 2em;
+			}
+
+			.medium {
+				font-size: 3em;
 			}
 		</style>
 	</head>
@@ -220,6 +246,26 @@
 			</div>
 		</div>
 
+
+		<h1>Flow layout (left)</h1>
+
+		<div id="flow-left" class="{layout: {type: 'flow', resize: false, alignment: 'left'}}">
+			<div class="c small">
+				One
+			</div>
+			<div class="c medium">
+				Two
+			</div>
+			<div class="c medium">
+				Three
+			</div>
+			<div class="c large">
+				Four
+			</div>
+			<div class="c small">
+				Five
+			</div>
+		</div>
 		<a href="http://www.bramstein.com/projects/jlayout/">Back to the jLayout project homepage</a>
 	</body>
 </html>
