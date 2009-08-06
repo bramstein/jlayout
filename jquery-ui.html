@@ -24,39 +24,10 @@
 					container.layout();
 					$('#accordion').accordion('resize');
 
-					// this ensures that the center is never smaller than 400 pixels.
+					// This ensures that the center is never smaller than 400 pixels.
 					east.resizable('option', 'maxWidth', (center.width() + east.width()) - 400);
 					west.resizable('option', 'maxWidth', (center.width() + west.width()) - 400);
 				}
-
-				$('#accordion').accordion({header: 'h3', fillSpace: true});
-
-				// Set up the tabs in the center panel and remove the unwanted corners class
-				center.tabs();
-				center.children('ul').removeClass('ui-corner-all');
-
-$.extend($.ui.slider.defaults, {
-			range: "min",
-			animate: true,
-			orientation: "vertical"
-		});
-
-
-		$("#eq > span").each(function() {
-			// read initial values from markup and remove that
-			var value = parseInt($(this).text());
-			$(this).empty();
-			$(this).slider({
-				value: value
-			})
-		});				
-
-$("#progressbar").progressbar({
-			value: 59
-		});
-
-				$('#datepicker').datepicker();
-
 
 				// Make the west and east panels resizable
 				west.resizable({
@@ -70,20 +41,48 @@ $("#progressbar").progressbar({
 					handles: 'w',
 					stop: layout,
 					helper: 'ui-resizable-helper-east',
-					minWidth: 100
+					minWidth: 200
 				});
-
 				
-				// Do the main layout.
+				// Lay out the west panel first
+				west.layout();
+				
+				// Then do the main layout.
 				layout();
 
-		west.layout();
-
-//				$('#grid').layout();
+				// Hook up the re-layout to the window resize event.
 				$(window).resize(layout);
 
 
 
+				/**
+				 * Below here is all demo code, which has no relation to the layout.
+				 */
+				$('#accordion').accordion({header: 'h3', fillSpace: true});
+
+				// Set up the tabs in the center panel and remove the unwanted corners class
+				center.tabs();
+				center.children('ul').removeClass('ui-corner-all');
+
+				$.extend($.ui.slider.defaults, {
+					range: "min",
+					animate: true,
+					orientation: "vertical"
+				});
+
+				$("#eq > span").each(function() {
+					var value = parseInt($(this).text());
+					$(this).empty();
+					$(this).slider({
+						value: value
+					});
+				});				
+
+				$("#progressbar").progressbar({
+					value: 59
+				});
+
+				$('#datepicker').datepicker();
 			});
 		</script>
 		<link type="text/css" href="../../lib/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
@@ -108,12 +107,6 @@ $("#progressbar").progressbar({
 				height: 3em;
 				background-color: #3F3F3F;
 				border-bottom: 1px solid black;
-			}
-
-			.north h1 {
-				font-size: 1em;
-				color: white;
-				padding-left: 1em;
 			}
 
 			.south {
@@ -175,7 +168,6 @@ $("#progressbar").progressbar({
 				border-right: 6px solid #bbbbcd;
 			}
 
-
 			.center {
 				font-size: 0.9em;
 				overflow: auto;
@@ -192,12 +184,18 @@ $("#progressbar").progressbar({
 				border-right: none;
 			}
 
-			#grid div {
-				background-color: #dadaef;
-				width: 5em;
-				height: 5em;
-				font-size: 2em;
-				text-align: center;
+			.west .panel {
+				width: 15em;
+				display: inline-block;
+				overflow: auto;
+			}
+
+			.panel p {
+				margin: 1em;
+			}
+
+			a {
+				color: lightblue;
 			}
 
 			.highlight {
@@ -205,34 +203,27 @@ $("#progressbar").progressbar({
 				font-size: 1em;
 			}
 
-			.west .panel {
-				width: 15em;
-				display: inline-block;
+			.north h1 {
+				font-size: 1em;
+				color: white;
+				padding-left: 1em;
 			}
 
-			a {
-				color: lightblue;
+			#eq span {
+				font-size: 0.6em;
+				height: 120px;
+				float: left;
+				margin: 15px;
 			}
-
-		#eq span {
-			font-size: 0.6em;
-			height: 120px;
-			float: left;
-			margin: 15px;
-		}
 		
 			#progressbar {
 				font-size: 0.6em;
 				margin: 1em;
 			}
 
-			.panel p {
-				margin: 1em;
-			}
-
 			#datepicker {
 				margin: 0.5em;
-				font-size: 0.8em;
+				font-size: 0.78em;
 			}
 		</style>
 	</head>
