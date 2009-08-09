@@ -25,6 +25,31 @@
 			return r;
 		};
 
+		function align(row, offset, rowSize, parentSize) {
+			var location = {
+					x: offset.x,
+					y: offset.y
+				},
+				i = 0,
+				len = row.length;
+
+			switch (my.alignment) {
+			case 'center':
+				location.x += (my.hgap + parentSize.width - rowSize.width) / 2;
+				break;
+			case 'right':
+				location.x += parentSize.width - rowSize.width + my.hgap;
+				break;
+			}
+
+			for (; i < len; i += 1) {
+				location.y = offset.y;
+				row[i].bounds(location);
+				row[i].doLayout();
+				location.x += row[i].bounds().width + my.hgap;
+			}
+		}
+
 		that.layout = function (container) {
 			var parentSize = container.bounds(),
 				insets = container.insets(),
@@ -67,32 +92,7 @@
 			return container;
 		};
 
-		function align(row, offset, rowSize, parentSize) {
-			var location = {
-					x: offset.x,
-					y: offset.y
-				},
-				i = 0,
-				len = row.length;
 
-			switch (my.alignment) {
-				case 'center': {
-					location.x += (my.hgap + parentSize.width - rowSize.width) / 2;
-					break;
-				}
-				case 'right': {
-					location.x += parentSize.width - rowSize.width + my.hgap;
-					break;
-				}
-			}
-
-			for (; i < len; i += 1) {
-				location.y = offset.y;
-				row[i].bounds(location);
-				row[i].doLayout();
-				location.x += row[i].bounds().width + my.hgap;
-			}
-		}
 
 		function typeLayout(type) {
 			return function (container) {

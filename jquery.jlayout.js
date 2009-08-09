@@ -74,8 +74,8 @@ if (jQuery && jLayout) {
 					} else {
 						tmp = item.position();
 						return {
-                          	'x': tmp.left,
-                        	'y': tmp.top,
+							'x': tmp.left,
+							'y': tmp.top,
 							'width': item.outerWidth(false),
 							'height': item.outerHeight(false)
                         };
