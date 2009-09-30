@@ -1,5 +1,5 @@
 /*!
- * jLayout Grid Layout - JavaScript Layout Algorithms v0.4
+ * jLayout Grid Layout - JavaScript Layout Algorithms v0.41
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009, Bram Stein
@@ -21,14 +21,14 @@
 		my.items = spec.items || [];
 		my.columns = spec.columns || my.items.length;
 		my.rows = spec.rows || 0;
+		my.fillVertical = spec.fill && spec.fill === 'vertical';
 
 		if (my.rows > 0) {
 			my.columns = Math.floor((my.items.length + my.rows - 1) / my.rows); 
-		}
-		else {
+		} else {
 			my.rows = Math.floor((my.items.length + my.columns - 1) / my.columns);
 		}
-
+	
 		that.items = function () {
 			var r = [];
 			Array.prototype.push.apply(r, my.items);
@@ -46,7 +46,7 @@
 			for (i = 0, j = 1; i < my.items.length; i += 1, j += 1) {
 				my.items[i].bounds({'x': x, 'y': y, 'width': width, 'height': height});
 
-				if (my.columns <= my.rows) {
+				if (!my.fillVertical) {
 					if (j >= my.columns) {
 						y += height + my.vgap;
 						x = insets.left;
@@ -55,14 +55,12 @@
 					else {
 						x += width + my.hgap;
 					}
-				}
-				else {
+				} else {
 					if (j >= my.rows) {
 						x += width + my.hgap;
 						y = insets.top;
 						j = 0;
-					}
-					else {
+					} else {
 						y += height + my.vgap;
 					}
 				}
