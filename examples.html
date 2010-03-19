@@ -4,7 +4,7 @@
 	<head>
 		<title>jLayout Examples</title>
 		<meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
-		<script type="text/javascript" src="../../lib/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="../../lib/jquery-1.4.2.js"></script>
 		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
 		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
 		<script type="text/javascript" src="jlayout.border.js"></script>
@@ -41,36 +41,6 @@
 				});
 
 				$('#flow-left').layout();
-
-
-				// Dynamic DOM elements
-				var parent = $('<div></div>'),
-					i = 0,
-					child;
-
-				for (; i < 4; i += 1) {
-					child = $('<div>' + i.toString() + '</div>');
-					child.css({
-						width: 20,
-						height: 20
-					});
-					parent.append(child);
-				}
-
-				parent.css({
-					width: 100,
-					height: 100
-				});
-
-				$('body').append(parent);
-
-				console.log(parent.width());
-
-				parent.layout({
-					type: 'grid'
-				});
-
-				console.log(parent);
 			});
 		</script>
 		<style>
