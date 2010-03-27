@@ -5,9 +5,9 @@
  * Copyright 2008-2009, Bram Stein
  * All rights reserved.
  */
-/*global jLayout */
+/*global jLayout:true */
 (function () {
-	jLayout = typeof jLayout === 'undefined' ? {} : jLayout;
+	jLayout = (typeof jLayout === 'undefined') ? {} : jLayout;
 
 	jLayout.flow = function (options) {
 		var my = {},
@@ -124,4 +124,4 @@
 
 		return that;
 	};
-})();
+}());

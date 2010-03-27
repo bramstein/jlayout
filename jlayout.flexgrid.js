@@ -6,9 +6,9 @@
  * Copyright 2008-2009, Bram Stein
  * All rights reserved.
  */
-/*global jLayout */
+/*global jLayout:true */
 (function () {
-	jLayout = typeof jLayout === 'undefined' ? {} : jLayout;
+	jLayout = (typeof jLayout === 'undefined') ? {} : jLayout;
 
 	// The flex grid has a dependency on the grid layout, so please make
 	// sure you include the grid layout manager before the flex grid
@@ -105,4 +105,4 @@
 			return that;
 		};
 	}
-})();
+}());

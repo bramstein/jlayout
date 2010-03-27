@@ -178,5 +178,5 @@ if (jQuery && jLayout) {
 			resize: true,
 			type: 'grid'
 		};
-	})(jQuery);
+	}(jQuery));
 }

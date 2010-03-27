@@ -5,9 +5,9 @@
  * Copyright 2008-2009, Bram Stein
  * All rights reserved.
  */
-/*global jLayout */
+/*global jLayout:true */
 (function () {
-	jLayout = typeof jLayout === 'undefined' ? {} : jLayout;
+	jLayout = (typeof jLayout === 'undefined') ? {} : jLayout;
 
 	jLayout.border = function (spec) {
 		var my = {},
@@ -133,4 +133,4 @@
 		that.maximum = typeLayout('maximum');
 		return that;
 	};
-})();
+}());
