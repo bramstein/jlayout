@@ -1,5 +1,5 @@
-/*!
- * jLayout Grid Layout - JavaScript Layout Algorithms v0.41
+/**
+ * @preserve jLayout Grid Layout - JavaScript Layout Algorithms v0.41
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009, Bram Stein

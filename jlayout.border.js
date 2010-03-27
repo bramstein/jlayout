@@ -1,5 +1,5 @@
-/*!
- * jLayout Border Layout - JavaScript Layout Algorithms v0.4
+/**
+ * @preserve jLayout Border Layout - JavaScript Layout Algorithms v0.4
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009, Bram Stein

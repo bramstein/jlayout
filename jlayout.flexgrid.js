@@ -1,6 +1,5 @@
-
-/*!
- * jLayout Flex Grid Layout - JavaScript Layout Algorithms v0.4
+/**
+ * @preserve jLayout Flex Grid Layout - JavaScript Layout Algorithms v0.4
  * Based on: http://www.javaworld.com/javaworld/javatips/jw-javatip121.html
  *
  * Licensed under the new BSD License.

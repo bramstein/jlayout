@@ -1,5 +1,5 @@
-/*!
- * jLayout Column Layout - JavaScript Layout Algorithms v0.1
+/**
+ * @preserve jLayout Column Layout - JavaScript Layout Algorithms v0.1
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009, Bram Stein

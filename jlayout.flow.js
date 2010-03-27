@@ -1,5 +1,5 @@
-/*!
- * jLayout Flow Layout - JavaScript Layout Algorithms v0.12
+/**
+ * @preserve jLayout Flow Layout - JavaScript Layout Algorithms v0.12
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009, Bram Stein

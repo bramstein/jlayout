@@ -1,6 +1,5 @@
-
-/*!
- * jLayout JQuery Plugin v0.17
+/**
+ * @preserve jLayout JQuery Plugin v0.17
  *
  * Licensed under the new BSD License.
  * Copyright 2008-2009 Bram Stein
