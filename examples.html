@@ -41,10 +41,13 @@
 				});
 
 				$('#flow-left').layout();
+
+				$('.horizontal').layout();
+				$('.vertical').layout();
 			});
 		</script>
 		<style>
-			.grid, .flex-grid, .column, .border, .mpb, .nested-center, .nested, .code {
+			.grid, .flex-grid, .column, .border, .mpb, .nested-center, .nested, .code, .horizontal, .vertical {
 				overflow: auto;
 			}
 
@@ -57,8 +60,12 @@
 				display: inline-block;
 			}
 
+			.e {
+				height: 150px;
+			}
+
 			.d {
-				width: 200px;
+				width: 150px;
 			}
 
 			.nested-center, .mpb {
@@ -263,6 +270,32 @@
 			</div>
 			<div class="c small">
 				Five
+			</div>
+		</div>
+
+		<h1>Horizontal layout</h1>
+		<div class="horizontal {layout: {type: 'flexGrid', rows: 1, hgap: 5, vgap: 5}}">
+			<div class="c">
+				One
+			</div>
+			<div class="c d">
+				Two
+			</div>
+			<div class="c">
+				Three
+			</div>
+		</div>
+
+		<h1>Vertical layout</h1>
+		<div class="vertical {layout: {type: 'flexGrid', columns: 1, hgap: 5, vgap: 5}}">
+			<div class="c">
+				One
+			</div>
+			<div class="c e">
+				Two
+			</div>
+			<div class="c">
+				Three
 			</div>
 		</div>
 		<a href="http://www.bramstein.com/projects/jlayout/">Back to the jLayout project homepage</a>
