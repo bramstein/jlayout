@@ -11,15 +11,13 @@ The following method is added to the jQuery element method namespace.
 <dl>
     <dt>layout(options)</dt>
     <dd>Creates a new layout algorithm, parses meta data if available, scans for child elements, and lays out the container. It returns the jQuery object so it can be chained. The options parameter can contain all of the layout algorithm properties described in the jLayout documentation. It accepts two additional other properties:
-
         <dl>
             <dt>type</dt>
             <dd>The layout algorithm to use. Should be either `grid`, `border`, `flexGrid`, or `flow`. Defaults to `grid`.</dd>
     
             <dt>resize</dt>
             <dd>Automatically resize the container to fit its children's preferred size; `false` resizes the child elements to fit the container, `true` resizes the container to fit the child elements. Defaults to `true`.</dd>
-        </dl>
-    </dd>
+        </dl></dd>
 </dl>
 
 ## Examples
