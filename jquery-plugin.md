@@ -36,24 +36,24 @@ Below is an example of laying out a simple 2x2 grid containing four components. 
         ]
     });
 
-If you have the jQuery metadata plugin installed you can also specify the layout in your HTML code. The following example will produce the same result as the previous example with less code.
+You can also specify the layout in your HTML code. The following example will produce the same result as the previous example with less code.
 
     $('#my-container').layout();
 
-    <div id="my-container" class="{layout: {type: 'grid', columns: 2, rows: 2}}">
+    <div id="my-container" data-layout='{type: "grid", columns: 2, rows: 2}'>
         <div>One</div>
         <div>Two</div>
         <div>Three</div>
         <div>Four</div>
     </div>
 
-Note that the plugin metadata should always be contained in a `layout` property whose contents is the same as the options object passed to the `layout` method. If the layout is set up using metadata the `layout` method can be called without parameters.
+If the layout is set up using the `data-attribute` attribute the `layout` method can be called without parameters.
 
 The border layout is set up in the same way, except that when a region is not given it will try to find the first element inside the container with a class name for that region. It will ignore other elements with the same region (class) name.
 
     $('#my-container').layout();
 
-    <div id="my-container" class="{layout: {type: 'border' }}">
+    <div id="my-container" data-layout='{type: "border" }'>
         <div class="center">Center</div>
         <div class="north">North</div>
         <div class="center">Center?</div>

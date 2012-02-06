@@ -2,16 +2,16 @@
 <html>
 	<head>
 		<title>jLayout jQuery UI integration</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script type="text/javascript" src="../../lib/jquery-1.4.2.js"></script>
-		<script type="text/javascript" src="../../lib/jquery-ui-1.7.2.custom.min.js"></script>
-		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
-		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
-		<script type="text/javascript" src="jlayout.border.js"></script>
-		<script type="text/javascript" src="jlayout.grid.js"></script>
-		<script type="text/javascript" src="jlayout.flexgrid.js"></script>
-		<script type="text/javascript" src="jlayout.flow.js"></script>
-		<script type="text/javascript" src="jquery.jlayout.js"></script>
+        <meta charset="utf-8">
+        <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../lib/jquery.sizes.js"></script>
+		<script type="text/javascript" src="../lib/jlayout.border.js"></script>
+		<script type="text/javascript" src="../lib/jlayout.grid.js"></script>
+		<script type="text/javascript" src="../lib/jlayout.flexgrid.js"></script>
+		<script type="text/javascript" src="../lib/jlayout.flow.js"></script>
+		<script type="text/javascript" src="../lib/jquery.jlayout.js"></script>
 		<script type="text/javascript">
 			jQuery(function($) {
 				var container = $('body'),
@@ -85,7 +85,6 @@
 				$('#datepicker').datepicker();
 			});
 		</script>
-		<link type="text/css" href="../../lib/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
 		<style>
 
 			html, body {
@@ -227,7 +226,7 @@
 			}
 		</style>
 	</head>
-	<body class="{layout: {type: 'border', resize: false, hgap: 6}}">
+	<body data-layout='{type: "border", resize: false, hgap: 6}'>
 		<div class="north">
 			<h1><span class="highlight">jLayout</span> &amp; jQuery UI Integration Demo</h1>
 		</div>
@@ -251,7 +250,7 @@
 				<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
 			</div>
 		</div>
-		<div class="west {layout: {type: 'grid', columns: 1, resize: false}}">
+		<div data-layout='{type: "grid", columns: 1, resize: false}' class="west">
 			<div class="panel">
 				<div class="ui-state-default" style="padding:4px;">Panel 1</div>
 				<div id="datepicker"></div>

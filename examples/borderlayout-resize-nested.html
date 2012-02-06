@@ -1,16 +1,14 @@
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 	<head>
 		<title>Resizing Border Layout example</title>
-		<meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
-		<link type="text/css" href="../../lib/jquery-ui-1.7.1.custom.css" rel="stylesheet" />
-		<script type="text/javascript" src="../../lib/jquery-1.4.2.js"></script>
-		<script type="text/javascript" src="../../lib/jquery-ui-1.7.1.custom.min.js"></script>
-		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
-		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
-		<script type="text/javascript" src="jlayout.border.js"></script>
-		<script type="text/javascript" src="jquery.jlayout.js"></script>
+		<meta charset="utf-8">
+		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../lib/jquery.sizes.js"></script>
+		<script type="text/javascript" src="../lib/jlayout.border.js"></script>
+		<script type="text/javascript" src="../lib/jquery.jlayout.js"></script>
 		<script type="text/javascript">
 			jQuery(function($) {
 				// Just call the inner layout once to initialize it. This
@@ -93,8 +91,8 @@
 		</style>
 	</head>
 	<body>
-		<div class="layout-outer {layout: {type: 'border', hgap: 3, vgap: 3}}">
-			<div class="center layout-inner {layout: {type: 'border', hgap: 3, vgap: 3}}">
+		<div data-layout='{type: "border", hgap: 3, vgap: 3}' class="layout-outer">
+			<div data-layout='{type: "border", hgap: 3, vgap: 3}' class="center layout-inner">
 				<div class="center">
 			        inner center
 			    </div>

@@ -2,13 +2,12 @@
 <html>
 	<head>
 		<title>Flow Layout example</title>
-		<meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
-		<script type="text/javascript" src="../../lib/jquery-1.4.2.js"></script>
-		<script type="text/javascript" src="../../lib/jquery-ui-1.7.2.custom.min.js"></script>
-		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
-		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
-		<script type="text/javascript" src="jlayout.flow.js"></script>
-		<script type="text/javascript" src="jquery.jlayout.js"></script>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../lib/jquery.sizes.js"></script>
+		<script type="text/javascript" src="../lib/jlayout.flow.js"></script>
+		<script type="text/javascript" src="../lib/jquery.jlayout.js"></script>
 		<script type="text/javascript">
 			jQuery(function($) {
 				var flow = $('#flow'),
@@ -82,7 +81,7 @@
 	<body>
 		<h1><a href="http://www.bramstein.com/projects/jlayout/">jLayout project homepage</a></h1>
 		<button id="left">Left</button><button id="center">Center</button><button id="right">Right</button>
-		<div id="flow" class="{layout: {type: 'flow', resize: false}}">
+		<div id="flow" data-layout='{type: "flow", resize: false}'>
 			<div class="c e">
 				One
 			</div>

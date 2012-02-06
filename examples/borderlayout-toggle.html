@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 	<head>
 		<title>Toggle-able Border Layout example</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link type="text/css" href="../../lib/jquery-ui-1.7.1.custom.css" rel="stylesheet" />
-		<script type="text/javascript" src="../../lib/jquery-1.4.2.js"></script>
-		<script type="text/javascript" src="../../lib/jquery-ui-1.7.1.custom.min.js"></script>
-		<script type="text/javascript" src="../../lib/jquery.metadata.js"></script>
-		<script type="text/javascript" src="../jsizes/jquery.sizes.js"></script>
-		<script type="text/javascript" src="jlayout.border.js"></script>
-		<script type="text/javascript" src="jquery.jlayout.js"></script>
+		<meta charset="utf-8">
+		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../lib/jquery.sizes.js"></script>
+		<script type="text/javascript" src="../lib/jlayout.border.js"></script>
+		<script type="text/javascript" src="../lib/jquery.jlayout.js"></script>
 		<script type="text/javascript">
 			jQuery(function($)
 			{
@@ -69,7 +68,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="layout {layout: {type: 'border', hgap: 3, vgap: 3}}">
+		<div data-layout='{type: "border", hgap: 3, vgap: 3}' class="layout">
 			<div class="center">
 				Center
 				<h1><a href="http://www.bramstein.com/projects/jlayout/">jLayout project homepage</a></h1>
