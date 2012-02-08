@@ -82,7 +82,7 @@ The other properties are specific to the layout algorithm and are discussed belo
 
 The border algorithm lays out components in five different regions. These regions are called `center`, `north`, `south`, `east` and `west`. The center component will be laid out in the center of the container, north on top of it, south beneath it and west and east on the left and right side respectively. The layout can only contain one of each region, but all are optional. Below is a visualization of a layout using all five regions.
 
-![](assets/border.png)
+![](https://github.com/bramstein/jlayout/raw/master/assets/border.png)
 
 The border algorithm takes an option object as parameter which can contain the following properties:
 
@@ -108,7 +108,7 @@ If a region is not specified or the component is not visible its space will be t
 
 The grid algorithm lays out the components in a grid, and resizes each component to the same size. The number of columns and rows can be specified by the user. Below is a visualization of a grid layout with four components in a 2x2 grid.
 
-![](assets/grid.png)
+![](https://github.com/bramstein/jlayout/raw/master/assets/grid.png)
 
 The grid algorithm takes an option object as parameter which can contain the following properties:
 
@@ -142,7 +142,7 @@ If the number of rows is given, the number of columns is calculated automaticall
 
 The flex grid algorithm lays out the components in a grid with flexible row and columns sizes. The number of columns and rows can be specified by the user. Below is a visualization of a flex grid layout with six components in a 3x2 grid.
 
-![](assets/flexgrid.png)
+![](https://github.com/bramstein/jlayout/raw/master/assets/flexgrid.png)
 
 The flex grid algorithm takes an option object as parameter which can contain the following properties:
 
@@ -174,7 +174,7 @@ If the number of rows is given, the number of columns is calculated automaticall
 
 The flow algorithm lays out the components on a row. When the component does not fit on the current row it is moved to the next row. The alignment within the row can be user specified. Below is an example of a flow layout using five components with the alignment for each row set to left.
 
-![](assets/flow.png)
+![](https://github.com/bramstein/jlayout/raw/master/assets/flow.png)
 
 The flow algorithm takes an option object as parameter which can contain the following properties:
 
@@ -200,7 +200,7 @@ The following example lays out five components using a center alignment, without
 
 Horizontal and vertical layouts can be achieved by using a grid or a flexGrid layout with one row for horizontal layouts, and one column for vertical layouts. The choice of a grid layout or a flexGrid layout depends on whether or not you want the items in the grid to have uniform sizes (grid) or their natural sizes (flexGrid.) The following layout uses a flex grid so that all items are laid out in the horizontal direction while still allowing the individual items to take up their natural size (i.e. the second component is longer than the other two.)
 
-![](assets/horizontal.png)
+![](https://github.com/bramstein/jlayout/raw/master/assets/horizontal.png)
 
     var horizontalLayout = jLayout.flexGrid({
         rows: 1,
@@ -209,7 +209,7 @@ Horizontal and vertical layouts can be achieved by using a grid or a flexGrid la
 
 You can also lay out components vertically, by just changing the `rows` parameter to `columns` as shown in the next example.
 
-![](assets/vertical.png)
+![](https://github.com/bramstein/jlayout/raw/master/assets/vertical.png)
 
     var verticalLayout = jLayout.flexGrid({
         columns: 1,
