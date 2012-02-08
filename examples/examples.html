@@ -171,7 +171,7 @@
 
 		<a name="border"></a>
 		<h1>Border</h1>
-		<div class="border {layout: {type: 'border', hgap: 3, vgap: 3}}">
+		<div data-layout='{"type": "border", "hgap": 3, "vgap": 3}' class="border">
 			<div class="c center">
 				Center
 			</div>
@@ -191,7 +191,7 @@
 
 		<a name="mpb"></a>
 		<h1>Margin, Padding &amp; Border</h1>
-		<div class="mpb {layout: {type: 'border', hgap: 3, vgap: 3}}">
+		<div data-layout='{"type": "border", "hgap": 3, "vgap": 3}' class="mpb">
 			<div class="c center">
 				Center + Margin-Left
 			</div>
@@ -205,8 +205,8 @@
 
 		<a name="nested"></a>
 		<h1>Nested layouts</h1>
-		<div class="nested {layout: {type: 'border', hgap: 3, vgap: 3}}">
-			<div class="center nested-center {layout: {type: 'grid', hgap: 3, vgap: 3, columns: 2, rows: 2}}">
+		<div data-layout='{"type": "border", "hgap": 3, "vgap": 3}' class="nested">
+			<div data-layout='{"type": "grid", "hgap": 3, "vgap": 3, "columns": 2, "rows": 2}' class="center nested-center">
 				<div class="c">
 					One
 				</div>
@@ -253,7 +253,7 @@
 
 		<h1>Flow layout (left)</h1>
 
-		<div id="flow-left" class="{layout: {type: 'flow', resize: false, alignment: 'left'}}">
+		<div id="flow-left" data-layout='{"type": "flow", "resize": false, "alignment": "left"}'>
 			<div class="c small">
 				One
 			</div>
@@ -272,7 +272,7 @@
 		</div>
 
 		<h1>Horizontal layout</h1>
-		<div class="horizontal {layout: {type: 'flexGrid', rows: 1, hgap: 5, vgap: 5}}">
+		<div data-layout='{"type": "flexGrid", "rows": 1, "hgap": 5, "vgap": 5}' class="horizontal">
 			<div class="c">
 				One
 			</div>
@@ -285,7 +285,7 @@
 		</div>
 
 		<h1>Vertical layout</h1>
-		<div class="vertical {layout: {type: 'flexGrid', columns: 1, hgap: 5, vgap: 5}}">
+		<div data-layout='{"type": "flexGrid", "columns": 1, "hgap": 5, "vgap": 5}' class="vertical">
 			<div class="c">
 				One
 			</div>
