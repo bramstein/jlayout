@@ -1,4 +1,4 @@
-# jLayout — JavaScript Layout Algorithms
+## jLayout — JavaScript Layout Algorithms
 
 The jLayout JavaScript library provides layout algorithms for laying out components. A component is an abstraction; it can be implemented in many ways, for example as items in a HTML5 Canvas drawing or as HTML elements. The jLayout library allows you to focus on drawing the individual components instead of on how to arrange them on your screen.
 
