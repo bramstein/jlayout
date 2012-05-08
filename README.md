@@ -2,7 +2,7 @@
 
 The jLayout JavaScript library provides layout algorithms for laying out components. A component is an abstraction; it can be implemented in many ways, for example as items in a HTML5 Canvas drawing or as HTML elements. The jLayout library allows you to focus on drawing the individual components instead of on how to arrange them on your screen.
 
-The library currently provides four layout algorithms: `border`, which lays out components in five different regions; `grid`, which lays out components in a user defined grid, `flex-grid` which offers a grid with flexible column and row sizes, and `flow` which flows components in a user defined direction. Using the `grid` and `flex-grid` algorithms you can also create horizontal and vertical layouts. A [jQuery plugin](jquery-plugin.md) to lay out HTML elements is also available.
+The library currently provides four layout algorithms: `border`, which lays out components in five different regions; `grid`, which lays out components in a user defined grid, `flex-grid` which offers a grid with flexible column and row sizes, and `flow` which flows components in a user defined direction. Using the `grid` and `flex-grid` algorithms you can also create horizontal and vertical layouts. A [jQuery plugin](jquery-plugin.html) to lay out HTML elements is also available.
 
 ## Usage
 
