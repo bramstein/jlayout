@@ -220,7 +220,7 @@ You can also lay out components vertically, by just changing the `rows` paramete
 
 Please use the [jLayout Google Group](http://groups.google.com/group/jlayout/) for any questions, suggestions, ideas or problems you might have using the jLayout library or the jQuery plugin. Feedback is much appreciated.
 
-### License
+## License
 
 This libary and the jQuery plugin are licensed under the
 [new BSD license](http://www.bramstein.com/licenses/BSD.txt). To summarize the license; the
