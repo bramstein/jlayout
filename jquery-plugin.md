@@ -1,4 +1,4 @@
-# jLayout — jQuery plugin
+## jLayout — jQuery plugin
 
 The jLayout jQuery plugin provides four layout algorithms for laying out HTML elements in web pages. The first is `border`, which lays out components in five different regions. The second algorithm is `grid`, which lays out components in a user defined grid. The third algorithm is `flexGrid`, which lays out components in a grid with flexible column and row sizes. The fourth and last algorithm is `flow`, which lays out components in rows with components overflowing to new rows if there is not enough horizontal space. The plugin allows you to lay out your elements with as little code as possible, and behaves correctly when used with margins, padding and borders.
 
