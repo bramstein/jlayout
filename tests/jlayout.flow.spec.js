@@ -1,3 +1,5 @@
+//included by chrome
+/*global console*/
 //included by jasmine
 /*global describe, it, expect, beforeEach, spyOn*/
 //included by lodash
@@ -62,6 +64,25 @@ describe("Flow Layout", function () {
         fst = new Component(0,0,0.2,0.2);
         snd = new Component(0,0,0.2,0.2);
         trd = new Component(0,0,0.2,0.2);
+        this.addMatchers({
+            toThrowErrorClass: function (expected) {
+                var notText = this.isNot ? "":" not ";
+                var exception;
+                try {
+                    this.actual(); 
+                } catch (e) {
+                    exception = e;
+                }
+                this.message = function () {
+                    if (!_.isFunction(expected) || !(expected.prototype instanceof Error)) {
+                        return "toThrowErrorClass awaits a valid ErrorClass Constructor, derived at least form Error!";
+                    }
+                    return "Expected function is " + notText + " throwing the expected error!";
+                };
+                return _.isFunction(expected) && expected.prototype instanceof Error && exception instanceof expected;
+            }
+        });
+
     });
 
     describe ("layout-call", function () {
@@ -94,11 +115,11 @@ describe("Flow Layout", function () {
         });
         it("shall except if component does not fit into far to small container", function () {
             var aTooSmallContainer = new Component(0,0,0.1,0.1);
-            expect(_.partial(flowLayout, aTooSmallContainer, {items: [fst]})).toThrow(jLayout.OutOfBoundsError);
+            expect(_.partial(flowLayout, aTooSmallContainer, {items: [fst]})).toThrowErrorClass(jLayout.OutOfBoundsError);
         });
         it("shall except if component does not fit into height of container", function () {
             var aTooSmallContainer = new Component(0,0,0.4,0.2);
-            expect(_.partial(flowLayout, aTooSmallContainer, {items: [fst, snd, trd]})).toThrow(jLayout.OutOfBoundsError);
+        expect(_.partial(flowLayout, aTooSmallContainer, {items: [fst, snd, trd]})).toThrowErrorClass(jLayout.OutOfBoundsError);
         });
         it("shall not exept if component does fit exactly into container", function () {
             var aExactlyFittingContainer = new Component(0,0,0.2,0.2);
@@ -106,7 +127,9 @@ describe("Flow Layout", function () {
         });
         it("shall exept if component does not fit into width of container", function () {
             var aTooSmallContainer = new Component (0,0,0.2,0.2);
-            expect(_.partial(flowLayout, aTooSmallContainer, {items: [fst, snd]})).toThrow(jLayout.OutOfBoundsError);
+            var myError = function () {};
+            myError.prototype = new Error();
+            expect(_.partial(flowLayout, aTooSmallContainer, {items: [fst, snd]})).toThrowErrorClass(jLayout.OutOfBoundsError);
         });
     });
 });
